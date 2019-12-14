@@ -1,6 +1,6 @@
 from socket import *
 serverName = 'localhost'
-serverPort = 7001
+serverPort = 7004
 clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName,serverPort))
 message = input("client:: enter your message ")
