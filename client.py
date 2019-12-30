@@ -1,4 +1,4 @@
-from socket import *
+ from socket import *
 import json
 import _pickle as pickle
 import threading
@@ -49,7 +49,7 @@ class client:
         print(fileName)
         print("enter q to quit")
         if(fileName != "q"):
-            msg = input("enter your msg ")
+            msg = input("\nenter your msg ")
             client_conn.send(msg.encode())
             self.listenToclient(client_conn,addr)
             # client_conn.send(self.dict_to_binary(self.peer))    
@@ -79,12 +79,12 @@ class client:
     def talk(self):
         self.new_Sock.send(("hello from"+self.name).encode())
         while True:
-            print("i am in the while")
+            print("waiting for reply \n")
             fileName = self.new_Sock.recv(1024).decode()
             print(fileName)
-            print("enter q to quit")
+            print("enter q to quit \n")
             if(fileName != "q"):
-                msg = input("enter your msg ")
+                msg = input(" \n enter your msg ")
                 self.new_Sock.send(msg.encode())
             else:
                 break
@@ -99,8 +99,8 @@ class client:
     def menu(self):
         while True:
             
-            print("Hello World")
-            user_input = input("enter 'show peers' to see the peers list \n enter 'connect' to connect to peer \n enter 'upload file' to upload file  ")
+            print(" \n Hello World")
+            user_input = input("enter 'show peers' to see the peers list \n enter 'connect' to connect to peer \n enter 'upload file' to upload file  \n")
             if user_input == "show peers":
                 self.get_peer_info()
             if user_input == "connect":
