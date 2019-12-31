@@ -12,6 +12,7 @@ class server:
     
     def __init__(self):
         self.peer_list = []
+        self.file_list = []
         self.serverSocket = socket(AF_INET, SOCK_STREAM)
         self.serverSocket.bind(('',self.serverPort))
         self.serverSocket.listen(10)
@@ -46,6 +47,15 @@ class server:
                 data = pickle.dumps(self.peer_list)
                 self.counter+=1
                 print(self.counter)
+                s = self.client_conn.sendall(data)
+                print("status",s)
+            if(data[0] == "file_upload"):
+                self.file_list.append(data)
+                self.client_conn.sendall("done file saved ".encode())
+            if (data[0]=="get_file_upload"):
+                data = pickle.dumps(self.file_list)
+                # self.counter+=1
+                # print(self.counter)
                 s = self.client_conn.sendall(data)
                 print("status",s)
 
